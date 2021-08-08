@@ -1,4 +1,4 @@
-import { MockEntry } from "../types";
+import { ApiStrcut, MockEntry } from "../types";
 import { isExsit } from "../utils/file";
 import log from "../utils/logger";
 import parser from "./parser";
@@ -8,7 +8,7 @@ function startMock(path: MockEntry) {
   log.logger('start mock 🚀🚀🚀');
   if(!isExsit(path)) log.error('please check the path.'); 
   const res = parser(path);
-  createKoaServer();
+  createKoaServer(res as ApiStrcut[]);
 }
 
 export default startMock;

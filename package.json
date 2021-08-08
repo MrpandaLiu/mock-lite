@@ -16,6 +16,7 @@
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
+    "@types/koa": "^2.13.4",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "@typescript-eslint/parser": "^4.29.0",
     "babel": "^6.23.0",
@@ -38,7 +39,7 @@
   },
   "lint-staged": {
     "*": [
-      "eslint --ext .tsx,.ts --fix ./src"
+      "eslint --ext .ts --fix ./src"
     ]
   }
 }
