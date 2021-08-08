@@ -4,7 +4,8 @@ import log from '../../utils/logger';
 
 function parser(path: string) {
   try {
-    const file = t.parse(readFile(path));
+    const parsedResult = t.parse(readFile(path));
+    return parsedResult;
   } catch(err) {
     log.error(err);
   }

@@ -7,7 +7,7 @@ import createKoaServer from "./server";
 function startMock(path: MockEntry) {
   log.logger('start mock 🚀🚀🚀');
   if(!isExsit(path)) log.error('please check the path.'); 
-  parser(path);
+  const res = parser(path);
   createKoaServer();
 }
 
