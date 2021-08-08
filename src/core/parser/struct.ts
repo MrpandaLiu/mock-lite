@@ -14,7 +14,7 @@ class ProtoStructor {
     if(!this.definitions) return;
     const apiList = (Object.keys(this.definitions) || [])
     .reduce((total, cur) => {
-      const item = this.definitions!![cur];
+      const item = this.definitions![cur];
       if(isProtoApi(item)) {
         total = getApiList(item as t.ServiceDefinition);
       }

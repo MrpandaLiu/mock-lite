@@ -16,8 +16,10 @@ yarn add @panda/mock-lite -D
 by the way, if you just need the mock ability, you can install it on global.
 
 ## Usage
+```
 [api-path]  start mock
 
 help        get help for how to use mock-lite
 
 version     check the version of mock-lite  
+```
