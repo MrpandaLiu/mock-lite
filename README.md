@@ -7,11 +7,11 @@ This tool made by node.js and typescript.
 
 run the command to install:
 ```
-npm install @panda/mock-lite -D
+npm install mock-lite -D
 ```
 or
 ```
-yarn add @panda/mock-lite -D
+yarn add mock-lite -D
 ```
 by the way, if you just need the mock ability, you can install it on global.
 
