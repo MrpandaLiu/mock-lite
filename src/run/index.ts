@@ -29,7 +29,7 @@ function run() {
   });
   if(arg.help) help();
   if(arg.version) version();
-  if(arg._) startMock(arg._);
+  if(arg._) startMock(arg._ as string);
 }
 
 run();
