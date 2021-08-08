@@ -35,7 +35,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "node .git/hooks/commit-msg $HUSKY_GIT_PARAMS && commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
+      "pre-commit": "echo haha"
     }
   },
   "lint-staged": {
