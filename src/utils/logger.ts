@@ -4,4 +4,11 @@ function logger(message: string) {
   console.log(chalk.bold.greenBright('[mlite] ') + message);
 }
 
-export default logger;
+function error(message: string) {
+  console.log(chalk.bold.red('[mlite] ') + message);
+}
+
+export default {
+  logger,
+  error
+};

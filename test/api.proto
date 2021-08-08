@@ -1,0 +1,19 @@
+syntax="proto3";
+
+message DemoQueryRequest {
+  string name = 1;
+  int32 age = 2;
+}
+
+message DemoV1QueryResponse {
+  repeated string data = 1;
+  int32 err_no = 2;
+  string message = 3;
+}
+
+service DemoApi {
+    rpc demoV1Query(DemoQueryRequest) returns (DemoQueryResponse) {
+        option (google.api.http) = { post: "/test/query"
+        };
+    }
+}

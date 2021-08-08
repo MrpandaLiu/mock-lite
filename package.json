@@ -1,5 +1,5 @@
 {
-  "name": "@panda/mock-lite",
+  "name": "mock-lite",
   "version": "1.0.0",
   "description": "a lite tool for mock by protobuf",
   "main": "index.js",
@@ -21,7 +21,8 @@
     "chalk": "^4.1.2",
     "eslint": "^7.32.0",
     "husky": "^7.0.1",
-    "lint-staged": "^11.1.1"
+    "lint-staged": "^11.1.1",
+    "proto-parser": "^0.0.6"
   },
   "dependencies": {
     "@types/node": "^16.4.13",
@@ -35,7 +36,7 @@
     }
   },
   "lint-staged": {
-    "*{.ts,.js}":[
+    "*{.ts,.js}": [
       "eslint --ext .tsx,.ts --fix ./src",
       "git add"
     ]

@@ -1,9 +1,9 @@
 import startMock from "../core";
 import useCommand from "../utils/command";
-import logger from "../utils/logger";
+import log from "../utils/logger";
 
 function help() {
-  logger(
+  log.logger(
     `
     Usage:
       [api-path]  start mock
@@ -15,7 +15,7 @@ function help() {
 
 function version() {
   const version = require('../../package.json').version;
-  logger(version);
+  log.logger(version);
 }
 
 function run() {
