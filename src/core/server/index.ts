@@ -4,6 +4,9 @@ import { ApiStrcut } from '../../types';
 import log from "../../utils/logger";
 import genMockData from './gen-data';
 
+export const PORT = 3000;
+export const DEFAULT_PATH = `http://localhost:${PORT}`;
+
 function createKoaServer(apiList: ApiStrcut[]): void {
   const app = new Koa();
   const router = KoaRouter();
@@ -30,8 +33,8 @@ function createKoaServer(apiList: ApiStrcut[]): void {
     });
   });
 
-  app.listen(3000, () => {
-    log.logger('the mock server is running on port 3000...');
+  app.listen(PORT, () => {
+    log.logger(`the mock server is running on port ${PORT}...`);
   });
 }
 

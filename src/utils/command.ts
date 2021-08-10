@@ -1,5 +1,5 @@
 interface ParsedArg {
-  [arg: string]: any;
+  [arg: string]: unknown;
 }
 
 function useCommand(
