@@ -1,39 +1,40 @@
 import * as t from 'proto-parser';
-import { ApiStrcut, Field, SyntaxType } from '../../types';
-import { getApiList, getDefinitionList, 
-  getFieldType, getIdentifier, getPathAndMethod, isProtoApi } from './util';
+import { ApiStrcut, Field, StructResponse, SyntaxType } from '../../types';
+import {
+  getApiList, getDefinitionList,
+  getFieldType, getIdentifier, getPathAndMethod, isProtoApi
+} from './util';
 
 class ProtoStructor {
   private definitions: Record<string, t.NamespaceBase>;
 
-  constructor(pbTree:  t.ProtoDocument) {
+  constructor(pbTree: t.ProtoDocument) {
     this.definitions = getDefinitionList(pbTree) || {};
   }
 
   struct() {
-    if(!this.definitions) return;
+    if (!this.definitions) return;
     const apiList = (Object.keys(this.definitions) || [])
-    .reduce((total, cur) => {
-      const item = this.definitions![cur];
-      if(isProtoApi(item)) {
-        total = getApiList(item as t.ServiceDefinition);
-      }
-      return total;
-    }, [] as t.MethodDefinition[])
-    .map((api) => {
-      return this.strcutApi(api);
-    });
+      .reduce((total, cur) => {
+        const item = this.definitions![cur];
+        if (isProtoApi(item)) {
+          total = getApiList(item as t.ServiceDefinition);
+        }
+        return total;
+      }, [] as t.MethodDefinition[])
+      .map((api) => {
+        return this.strcutApi(api);
+      });
     return apiList;
   }
 
   strcutApi(
     api: t.MethodDefinition
-  ): ApiStrcut | undefined
-  {
+  ): ApiStrcut | undefined {
     const { name, options, responseType } = api;
-    if(!options) return;
+    if (!options) return;
     const { method, path } = getPathAndMethod(options);
-    if(!method || !path) return;
+    if (!method || !path) return;
     return {
       name,
       path,
@@ -44,7 +45,7 @@ class ProtoStructor {
 
   structRes(
     struct: t.FieldType
-  ) {
+  ): StructResponse {
     const { name, fields } = getIdentifier(this.definitions, struct.value) as t.MessageDefinition;
     return {
       name,
@@ -52,7 +53,7 @@ class ProtoStructor {
     }
   }
 
-  structField(fields: Record<string, t.FieldDefinition>) {
+  structField(fields: Record<string, t.FieldDefinition>): Field[] {
     const fieldList: Field[] = [];
     Object.keys(fields).forEach((key) => {
       const field = fields[key];
@@ -62,14 +63,14 @@ class ProtoStructor {
         isList: field.repeated,
         syntaxType: field.type.value as SyntaxType
       };
-      switch(type) {
+      switch (type) {
         case t.SyntaxType.BaseType:
           fieldList.push(obj);
           break;
         case t.SyntaxType.Identifier:
           const identifier = getIdentifier(this.definitions, field.type.value) as t.MessageDefinition | t.EnumDefinition;
           const isObject = identifier.syntaxType === t.SyntaxType.MessageDefinition;
-          if(isObject) {
+          if (isObject) {
             fieldList.push({
               ...obj,
               syntaxType: 'object',
@@ -87,7 +88,7 @@ class ProtoStructor {
     return fieldList;
   }
 
-  structEnum(values: Record<string, number>) {
+  structEnum(values: Record<string, number>): Field[] {
     const fieldList: Field[] = [];
     Object.keys(values).forEach(key => {
       values[key]

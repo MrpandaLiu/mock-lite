@@ -21,6 +21,11 @@ export interface ApiStrcut {
   response: ResponseStruct;
 }
 
+export interface StructResponse {
+  name: string;
+  fields: Field[];
+}
+
 export const enum HttpMethod {
   get = 'get',
   post = 'post',
